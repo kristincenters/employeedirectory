@@ -3,9 +3,9 @@ import React from 'react';
 const EmpList = (props) => {
 	return (
 		<div>
-			<p>{props.id}</p>
-			<p>{props.name}</p>
-			<p>{props.title}</p>
+			<li>{props.id}</li>
+			<li>{props.name}</li>
+			<li>{props.title}</li>
 		</div>
 	);
 };

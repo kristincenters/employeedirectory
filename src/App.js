@@ -1,20 +1,22 @@
 import React, { Component } from 'react';
 import './App.css';
 import EmpList from './EmpList';
-import workers from './employees.json';
+import Search from './components/Search';
+import employees from './employees.json';
 
 class App extends Component {
 	state = {
-		employees: workers,
+		employees: employees,
 		search: '',
 		currentList: [],
-		name: 'ascending',
+		name: '',
+		fullName: '',
 		error: '',
 	};
 	componentDidMount() {
 		//normally API call for info from database
 		console.log(this.state.employees);
-		//console.log(workers);
+		//console.log(employees);
 		this.setState({ currentList: this.state.employees });
 	}
 	//logic here
@@ -35,7 +37,8 @@ class App extends Component {
 	render() {
 		return (
 			<div className='App'>
-				<table class='table'>
+				<Search />
+				<table className='table'>
 					<thead>
 						<tr>
 							<th scope='col'>ID</th>
@@ -49,8 +52,8 @@ class App extends Component {
 					</thead>
 					<tbody>
 						{this.state.currentList.map((employee) => (
-							<tr>
-								<th className='empid' scope='row' key={employee.id}>
+							<tr key={employee.id}>
+								<th className='tblHeader' scope='row'>
 									{employee.id}
 								</th>
 								<td className='name'>{employee.name}</td>
@@ -59,15 +62,6 @@ class App extends Component {
 						))}
 					</tbody>
 				</table>
-
-				<input
-					value={this.state.name}
-					type='text'
-					name='name'
-					onChange={this.handleChange}
-					placeholder='Search...'
-				/>
-				<ul>...</ul>
 			</div>
 		);
 	}
