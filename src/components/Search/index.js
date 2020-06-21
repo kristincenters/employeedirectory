@@ -27,7 +27,7 @@ class Search extends Component {
 						Employee Directory
 						<div>
 							<input
-								class='form-control'
+								className='form-control'
 								type='text'
 								name='name'
 								placeholder='Search'
@@ -43,3 +43,14 @@ class Search extends Component {
 }
 
 export default Search;
+
+// </div>
+// 	  <div>
+// 	  {names.filter(name => name.includes('J')).map(filteredName => (
+// 		<li>
+// 		  {filteredName}
+// 		</li>
+// 	  ))}
+// 	</div>
+//   );
+// }

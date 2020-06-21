@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import EmpList from './EmpList';
-import Search from './components/Search';
+// import Search from './components/Search';
 import employees from './employees.json';
 
 class App extends Component {
@@ -9,8 +9,7 @@ class App extends Component {
 		employees: employees,
 		search: '',
 		currentList: [],
-		name: '',
-		fullName: '',
+		name: 'ascending',
 		error: '',
 	};
 	componentDidMount() {
@@ -33,11 +32,21 @@ class App extends Component {
 			console.log('title sort');
 		}
 	};
+	handleInputChange = (event) => {
+		console.log(Event);
+		// Getting the value and name of the input which triggered the change
+
+		// Updating the input's state
+		this.setState({ search: event.target.value });
+	};
 
 	render() {
+		let filteredEmployees = this.state.employees.filter((employee) => {
+			return employee.name.toLowerCase().indexOf(this.state.search) !== -1;
+		});
 		return (
 			<div className='App'>
-				<Search />
+				{/* <Search /> */}
 				<table className='table'>
 					<thead>
 						<tr>
@@ -51,7 +60,7 @@ class App extends Component {
 						</tr>
 					</thead>
 					<tbody>
-						{this.state.currentList.map((employee) => (
+						{filteredEmployees.map((employee) => (
 							<tr key={employee.id}>
 								<th className='tblHeader' scope='row'>
 									{employee.id}
@@ -62,6 +71,23 @@ class App extends Component {
 						))}
 					</tbody>
 				</table>
+				<form className='search'>
+					<div className='form-group'>
+						<div className='header'>
+							Employee Directory
+							<div>
+								<input
+									className='form-control'
+									type='text'
+									name='search'
+									placeholder='Search'
+									value={this.state.search}
+									onChange={this.handleInputChange.bind(this)}
+								/>
+							</div>
+						</div>
+					</div>
+				</form>
 			</div>
 		);
 	}
