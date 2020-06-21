@@ -47,6 +47,23 @@ class App extends Component {
 		return (
 			<div className='App'>
 				{/* <Search /> */}
+				<form className='search'>
+					<div className='form-group'>
+						<div className='header'>
+							Employee Directory
+							<div>
+								<input
+									className='form-control'
+									type='text'
+									name='search'
+									placeholder='Search'
+									value={this.state.search}
+									onChange={this.handleInputChange.bind(this)}
+								/>
+							</div>
+						</div>
+					</div>
+				</form>
 				<table className='table'>
 					<thead>
 						<tr>
@@ -71,23 +88,6 @@ class App extends Component {
 						))}
 					</tbody>
 				</table>
-				<form className='search'>
-					<div className='form-group'>
-						<div className='header'>
-							Employee Directory
-							<div>
-								<input
-									className='form-control'
-									type='text'
-									name='search'
-									placeholder='Search'
-									value={this.state.search}
-									onChange={this.handleInputChange.bind(this)}
-								/>
-							</div>
-						</div>
-					</div>
-				</form>
 			</div>
 		);
 	}
