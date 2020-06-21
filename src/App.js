@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import './App.css';
-import EmpList from './EmpList';
-// import Search from './components/Search';
-import employees from './employees.json';
+import TableRow from './components/TableRow';
+import Axios from 'axios';
 
 class App extends Component {
 	state = {
-		employees: employees,
+		employees: [],
 		search: '',
 		currentList: [],
 		name: 'ascending',
@@ -16,9 +15,14 @@ class App extends Component {
 		//normally API call for info from database
 		console.log(this.state.employees);
 		//console.log(employees);
-		this.setState({ currentList: this.state.employees });
+
+		Axios.get('https://jsonplaceholder.typicode.com/users').then((res) => {
+			const employees = res.data;
+			console.log(employees);
+			this.setState({ employees: employees, currentList: employees });
+			console.log(this.state);
+		});
 	}
-	//logic here
 	onSort = (value) => {
 		console.log('clicked');
 		console.log(value);
@@ -32,14 +36,12 @@ class App extends Component {
 			console.log('title sort');
 		}
 	};
+	// Grabbing input value and updating state
 	handleInputChange = (event) => {
 		console.log(Event);
-		// Getting the value and name of the input which triggered the change
-
-		// Updating the input's state
 		this.setState({ search: event.target.value });
 	};
-
+	// render results of search value; second return renders page
 	render() {
 		let filteredEmployees = this.state.employees.filter((employee) => {
 			return employee.name.toLowerCase().indexOf(this.state.search) !== -1;
@@ -49,7 +51,10 @@ class App extends Component {
 				{/* <Search /> */}
 				<form className='search'>
 					<div className='form-group'>
-						<div className='header'>
+						<div
+							className='header'
+							style={{ backgroundColor: 'lightgrey', padding: '25px' }}
+						>
 							Employee Directory
 							<div>
 								<input
@@ -66,7 +71,7 @@ class App extends Component {
 				</form>
 				<table className='table'>
 					<thead>
-						<tr>
+						<tr style={{ backgroundColor: 'lightgrey' }}>
 							<th scope='col'>ID</th>
 							<th onClick={() => this.onSort('name')} scope='col'>
 								Name
@@ -78,13 +83,12 @@ class App extends Component {
 					</thead>
 					<tbody>
 						{filteredEmployees.map((employee) => (
-							<tr key={employee.id}>
-								<th className='tblHeader' scope='row'>
-									{employee.id}
-								</th>
-								<td className='name'>{employee.name}</td>
-								<td className='title'>{employee.title}</td>
-							</tr>
+							<TableRow
+								id={employee.id}
+								key={employee.id}
+								name={employee.name}
+								title={employee.title}
+							/>
 						))}
 					</tbody>
 				</table>
