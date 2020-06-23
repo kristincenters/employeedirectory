@@ -7,12 +7,10 @@ class App extends Component {
 	state = {
 		employees: [],
 		search: '',
-		currentList: [],
-		name: 'ascending',
-		error: '',
+		currentList: '',
 	};
+
 	componentDidMount() {
-		//normally API call for info from database
 		console.log(this.state.employees);
 		//console.log(employees);
 
@@ -22,20 +20,43 @@ class App extends Component {
 			this.setState({ employees: employees, currentList: employees });
 			console.log(this.state);
 		});
-	}
-	onSort = (value) => {
-		console.log('clicked');
-		console.log(value);
 
-		if (value === 'name') {
-			console.log('name sort');
-			let reversed = this.state.currentList.reverse();
-			//setState fires your render()
-			this.setState({ currentList: reversed });
-		} else if (value === 'title') {
-			console.log('title sort');
-		}
-	};
+		this.compareBy.bind(this);
+		this.sortBy.bind(this);
+	}
+
+	// onSort = (value) => {
+	// 	console.log('clicked');
+	// 	console.log(value);
+
+	// 	if (value === 'name') {
+	// 		console.log('name sort');
+	// 		let reversed = this.state.currentList.reverse();
+	// 		//setState fires your render()
+	// 		this.setState({ currentList: reversed });
+	// 	} else if (value === 'email') {
+	// 		console.log('email sort');
+	// 	}
+	// };
+
+	// const sortedNames = name.sort((a, b) => (a.name . b.name ? 1 : -1));
+
+	// cost sortName = name.sort((a, b) => a - b);
+	// console.log(sortName)
+	compareBy(key) {
+		return function (a, b) {
+			if (a[key] < b[key]) return -1;
+			if (a[key] > b[key]) return 1;
+			return 0;
+		};
+	}
+
+	sortBy(key) {
+		let currentList = [...this.state.employees];
+		currentList.sort(this.compareBy(key));
+		this.setState({ employees: currentList });
+	}
+
 	// Grabbing input value and updating state
 	handleInputChange = (event) => {
 		console.log(Event);
@@ -48,17 +69,14 @@ class App extends Component {
 		});
 		return (
 			<div className='App'>
-				{/* <Search /> */}
 				<form className='search'>
-					<div className='form-group'>
-						<div
-							className='header'
-							style={{ backgroundColor: 'lightgrey', padding: '25px' }}
-						>
+					<div className='form-group '>
+						<div className='header'>
 							Employee Directory
 							<div>
+								<p>Search for employee by name</p>
 								<input
-									className='form-control'
+									className='form-control justify-content-center'
 									type='text'
 									name='search'
 									placeholder='Search'
@@ -71,23 +89,26 @@ class App extends Component {
 				</form>
 				<table className='table'>
 					<thead>
-						<tr style={{ backgroundColor: 'lightgrey' }}>
+						<tr>
+							{/* <th scope='col'>ID</th> */}
 							<th scope='col'>ID</th>
-							<th onClick={() => this.onSort('name')} scope='col'>
-								Name
+							<th onClick={() => this.sortBy('name')}>
+								name&#32;<i class='fas fa-sort'></i>
 							</th>
-							<th onClick={() => this.onSort('title')} scope='col'>
-								Title
+							<th onClick={() => this.onSort('email')} scope='col'>
+								email&#32;<i class='fas fa-sort'></i>
 							</th>
+							<th scope='col'>Phone</th>
 						</tr>
 					</thead>
 					<tbody>
 						{filteredEmployees.map((employee) => (
 							<TableRow
 								id={employee.id}
-								key={employee.id}
+								// key={employee.id}
 								name={employee.name}
-								title={employee.title}
+								email={employee.email}
+								phone={employee.phone}
 							/>
 						))}
 					</tbody>
