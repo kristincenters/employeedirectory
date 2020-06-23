@@ -1,7 +1,8 @@
+![Badge](https://img.shields.io/static/v1?label=License&message=MIT&color=<COLOR>?style=plastic)
+
 # Employee Directory
 
 View and sort employee directory.
-![Badge](https://img.shields.io/static/v1?label=License&message=MIT&color=<COLOR>?style=plastic)
 
 This application displays employee information in a table. It can be sorted by column headings and search by employee name.
 
