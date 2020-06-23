@@ -74,7 +74,7 @@ class App extends Component {
 						<div className='header'>
 							Employee Directory
 							<div>
-								<p>Search for employee by name</p>
+								<p className='subhead'>Search for employee by name</p>
 								<input
 									className='form-control justify-content-center'
 									type='text'
@@ -90,7 +90,6 @@ class App extends Component {
 				<table className='table'>
 					<thead>
 						<tr>
-							{/* <th scope='col'>ID</th> */}
 							<th onClick={() => this.sortBy('id')} scope='col'>
 								ID
 							</th>
@@ -98,7 +97,7 @@ class App extends Component {
 								Name
 							</th>
 							<th onClick={() => this.sortBy('email')} scope='col'>
-								email
+								mail
 							</th>
 							<th onClick={() => this.sortBy('phone')} scope='col'>
 								Phone
