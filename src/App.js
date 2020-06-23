@@ -9,7 +9,7 @@ class App extends Component {
 		search: '',
 		currentList: '',
 	};
-
+	// fetch employee list method also used for API request
 	componentDidMount() {
 		console.log(this.state.employees);
 
@@ -23,7 +23,7 @@ class App extends Component {
 		this.compareBy.bind(this);
 		this.sortBy.bind(this);
 	}
-
+	// sort functions
 	compareBy(key) {
 		return function (a, b) {
 			if (a[key] < b[key]) return -1;
@@ -88,7 +88,6 @@ class App extends Component {
 						{filteredEmployees.map((employee) => (
 							<TableRow
 								id={employee.id}
-								// key={employee.id}
 								name={employee.name}
 								email={employee.email}
 								phone={employee.phone}
