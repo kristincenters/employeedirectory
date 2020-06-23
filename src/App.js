@@ -12,7 +12,6 @@ class App extends Component {
 
 	componentDidMount() {
 		console.log(this.state.employees);
-		//console.log(employees);
 
 		Axios.get('https://jsonplaceholder.typicode.com/users').then((res) => {
 			const employees = res.data;
@@ -25,24 +24,6 @@ class App extends Component {
 		this.sortBy.bind(this);
 	}
 
-	// onSort = (value) => {
-	// 	console.log('clicked');
-	// 	console.log(value);
-
-	// 	if (value === 'name') {
-	// 		console.log('name sort');
-	// 		let reversed = this.state.currentList.reverse();
-	// 		//setState fires your render()
-	// 		this.setState({ currentList: reversed });
-	// 	} else if (value === 'email') {
-	// 		console.log('email sort');
-	// 	}
-	// };
-
-	// const sortedNames = name.sort((a, b) => (a.name . b.name ? 1 : -1));
-
-	// cost sortName = name.sort((a, b) => a - b);
-	// console.log(sortName)
 	compareBy(key) {
 		return function (a, b) {
 			if (a[key] < b[key]) return -1;
@@ -59,7 +40,6 @@ class App extends Component {
 
 	// Grabbing input value and updating state
 	handleInputChange = (event) => {
-		console.log(Event);
 		this.setState({ search: event.target.value });
 	};
 	// render results of search value; second return renders page
@@ -97,7 +77,7 @@ class App extends Component {
 								Name
 							</th>
 							<th onClick={() => this.sortBy('email')} scope='col'>
-								mail
+								Email
 							</th>
 							<th onClick={() => this.sortBy('phone')} scope='col'>
 								Phone
