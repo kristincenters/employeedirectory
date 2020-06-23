@@ -2,13 +2,11 @@
 
 # Employee Directory
 
-View and sort employee directory.
-
-This application displays employee information in a table. It can be sorted by column headings and search by employee name.
+This application displays employee information in a table. It can be sorted by clicking on column headings and searched by employee name.
 
 ## [Directory Application Deployed on Heroku](https://calm-peak-29245.herokuapp.com/)
 
-![](./public/assets/.gif)
+![](./public/assets/emp-directory.gif)
 
 ## Technology Stack
 
@@ -16,12 +14,12 @@ HTML, CSS, JS, React, Axios
 
 ## Deployment
 
-• Clone the repository and install dependencies
+1. Clone the repository and install dependencies
 
 - React
 - Axios
 
-• Run npm start
+2. Run npm start
 
 ## Contact
 
