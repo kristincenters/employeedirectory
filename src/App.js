@@ -91,14 +91,18 @@ class App extends Component {
 					<thead>
 						<tr>
 							{/* <th scope='col'>ID</th> */}
-							<th scope='col'>ID</th>
-							<th onClick={() => this.sortBy('name')}>
-								name&#32;<i class='fas fa-sort'></i>
+							<th onClick={() => this.sortBy('id')} scope='col'>
+								ID
 							</th>
-							<th onClick={() => this.onSort('email')} scope='col'>
-								email&#32;<i class='fas fa-sort'></i>
+							<th onClick={() => this.sortBy('name')} scope='col'>
+								Name
 							</th>
-							<th scope='col'>Phone</th>
+							<th onClick={() => this.sortBy('email')} scope='col'>
+								email
+							</th>
+							<th onClick={() => this.sortBy('phone')} scope='col'>
+								Phone
+							</th>
 						</tr>
 					</thead>
 					<tbody>
