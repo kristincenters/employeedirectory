@@ -4,7 +4,7 @@
 
 This application displays employee information in a table. It can be sorted by clicking on column headings and searched by employee name.
 
-## [Directory Application Deployed on Heroku](https://calm-peak-29245.herokuapp.com/)
+## [Deployed Application Link](https://kristincenters.github.io/employeedirectory/)
 
 ![](./public/assets/emp-directory.gif)
 
